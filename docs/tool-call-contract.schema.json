@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dm-service.local/schemas/tool-call-contract.schema.json",
+  "title": "Tool Call Envelope",
+  "type": "object",
+  "required": ["toolCallId", "toolName", "arguments", "requestedBy", "requestedAt"],
+  "properties": {
+    "toolCallId": {"type": "string", "description": "Stable id for audit/replay"},
+    "toolName": {"type": "string"},
+    "arguments": {"type": "object", "additionalProperties": true},
+    "requestedBy": {"type": "string", "enum": ["llm", "system"]},
+    "requestedAt": {"type": "string", "format": "date-time"},
+    "result": {
+      "type": ["object", "null"],
+      "additionalProperties": true
+    },
+    "status": {
+      "type": "string",
+      "enum": ["PENDING", "SUCCEEDED", "FAILED"]
+    },
+    "error": {
+      "type": ["object", "null"],
+      "properties": {
+        "code": {"type": "string"},
+        "message": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
