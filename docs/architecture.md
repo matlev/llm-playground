@@ -47,6 +47,7 @@
 - [x] Architecture doc matches code boundaries and principles.
 - [x] Flyway-managed schema exists for campaigns/sessions/players/messages/tool_calls/encounters.
 - [x] Indexes for `session_id + sequence_index` and `correlation_id` on event/tool logs.
+- [x] Uniqueness constraints enforce one ordered event per `(session_id, sequence_index)` for messages/tool calls.
 - [x] Service containerization for local Docker boot with Postgres.
 - [x] Health endpoint available at `/actuator/health`.
 - [x] CRUD skeleton for campaign/session/player and message posting.

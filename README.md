@@ -7,8 +7,9 @@ Spring Boot foundation for a provider-agnostic, auditable DM-as-a-service system
 - Tool-call JSON contract: `docs/tool-call-contract.schema.json`
 - Flyway migration for core tables:
   - campaigns, sessions, players, messages, tool_calls, encounters
-- Event log metadata and indexes for replay/debugging:
+- Event log metadata and ordering guarantees for replay/debugging:
   - `sequence_index`, `correlation_id`
+  - uniqueness on `(session_id, sequence_index)` for message/tool logs
 - Spring Boot skeleton with:
   - campaign/session/player/message API placeholders
   - `LLMClient` abstraction + `NoopLLMClient`
